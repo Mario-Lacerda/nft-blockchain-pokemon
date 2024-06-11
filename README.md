@@ -86,39 +86,9 @@ Quando você cunha um NFT usando o Alteon LaunchPad, o contrato inteligente cria
 
 ### **Código do contrato inteligente:**
 
-pragma solidity ^0.8.0;
-
-import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
-import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
-
-contract PokemonNFT is ERC721, ERC721Enumerable, Ownable {
-    constructor() ERC721("PokemonNFT", "PNFT") {}
-
-    // Função para criar um novo Pokémon NFT
-    function mintPokemon(address to, uint256 tokenId) public onlyOwner {
-        _mint(to, tokenId);
-    }
-
-    // Funções obrigatórias para sobrescrever devido ao ERC721Enumerable
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId)
-        internal
-        override(ERC721, ERC721Enumerable)
-    {
-        super._beforeTokenTransfer(from, to, tokenId);
-    }
-
-    function supportsInterface(bytes4 interfaceId)
-        public
-        view
-        override(ERC721, ERC721Enumerable)
-        returns (bool)
-    {
-        return super.supportsInterface(interfaceId);
-    }
-}   
 
 
+```plaintext
 pragma solidity ^0.8.0;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
@@ -159,7 +129,7 @@ Depois de implantar o contrato inteligente, você pode usar a função `mintNFT`
 
 O seguinte código mostra como usar o contrato inteligente para cunhar um novo NFT e atribuí-lo a uma carteira específica:
 
-
+```
 import web3
 
 # Crie uma instância do Web3 para conectar-se à rede Polygon
